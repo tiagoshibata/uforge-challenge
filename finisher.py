@@ -1,3 +1,4 @@
+from collections import defaultdict
 import pprint
 
 from Bio import SeqIO
@@ -8,6 +9,15 @@ country_genome = {x.name[:-16]: x for x in genome_paths}
 print(f"{len(country_genome)} genomes found: {', '.join(country_genome)}")
 
 for country, path in country_genome.items():
-    data = list(SeqIO.parse(path, 'fasta'))
-    print(f'{country} - {len(data)} entries')
+    seqs = list(SeqIO.parse(path, 'fasta'))
+    print(f'{country} - {len(seqs)} entries')
+    # sizes = defaultdict(int)
+    sizes = set()
+    total_size = 0
+    for seq in seqs:
+        sizes.add(len(seq))
+        total_size += len(seq)
+    # print(sorted(sizes))
+    print(total_size)
     # pprint.pprint(data)
+
