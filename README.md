@@ -1,4 +1,6 @@
-* Run `decompress.sh` to decompress genomes
+Prerequisites: pypy3, minimap2, muscle
+
+* On first run, run `setup.sh` to decompress genomes and create a pypy3 virtual environment
 * Run `finisher.py` to assemble drafts to .sam/.paf files in `./aligned_to_reference`
 * Run `paf_to_vcf.sh` to create .vcf files listing variants
 * Run `large_variants.py` to list large insertions/deletions

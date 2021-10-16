@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from collections import defaultdict
 from pathlib import Path
 from multiprocessing.pool import ThreadPool
@@ -14,12 +15,12 @@ print(f"{len(country_genome)} genomes found: {', '.join(country_genome)}")
 
 
 # Align to reference genome with minimap2
-def minimap2(reference, draft, output):
+def minimap2_to_sam(reference, draft, output):
     with open(output, 'w') as f:
         subprocess.run(['minimap2', '-cax', 'asm5', '-t24', reference, draft], check=True, stdout=f)
 
 
-def minimap2_paf(reference, draft, output):
+def minimap2_to_paf(reference, draft, output):
     with open(output, 'w') as f:
         subprocess.run(['minimap2', '-cx', 'asm5', '--cs', '-t24', reference, draft], check=True, stdout=f)
 
@@ -39,8 +40,8 @@ def ensure_sam():
             sizes.add(size)
         print(f'Entry sizes: {sorted(sizes)}')
         print(f'Mapping {country} with minimap2...')
-        minimap2('S288C_reference_genome_R64-3-1_20210421/S288C_reference_sequence_R64-3-1_20210421.fsa', path, sam)
-        minimap2_paf('S288C_reference_genome_R64-3-1_20210421/S288C_reference_sequence_R64-3-1_20210421.fsa', path, paf)
+        minimap2_to_sam('S288C_reference_genome_R64-3-1_20210421/S288C_reference_sequence_R64-3-1_20210421.fsa', path, sam)
+        minimap2_to_paf('S288C_reference_genome_R64-3-1_20210421/S288C_reference_sequence_R64-3-1_20210421.fsa', path, paf)
 
 
 # def counts(s):
@@ -89,4 +90,5 @@ def consensus(sam_path):
 
 if __name__ == '__main__':
     ensure_sam()
-    consensus('./aligned_to_reference/Brasil.sam')
+    for aligned in (Path(__file__).parent / 'aligned_to_reference').glob('*.sam'):
+        consensus(aligned)
