@@ -1,4 +1,4 @@
-* Download the reference genome (`S288C_reference_genome_R64-3-1_20210421`) from https://www.yeastgenome.org/
+* Run `decompress.sh` to decompress genomes
 * Run `finisher.py` to assemble drafts to .sam/.paf files in `./aligned_to_reference`
 * Run `paf_to_vcf.sh` to create .vcf files listing variants
 * Run `large_variants.py` to list large insertions/deletions
