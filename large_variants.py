@@ -44,15 +44,15 @@ if __name__ == '__main__':
                 for _ in range((v[0] - curr) // 100):
                      # Same
                     image.append([(0, 255, 0), (0, 255, 0)])
-                for _ in range(min(v[1], v[2])):
+                for _ in range(min(v[1], v[2]) // 10):
                     # Exists in both, different
                     image.append([(255, 255, 0), (255, 255, 0)])
                 if v[1] > v[2]:
-                    for _ in range(v[1] - v[2]):
+                    for _ in range((v[1] - v[2]) // 10):
                         # Exists in reference only
                         image.append([(255, 255, 0), (0, 0, 0)])
                 else:
-                    for _ in range(v[2] - v[1]):
+                    for _ in range((v[2] - v[1]) // 10):
                         # Exists in alt only
                         image.append([(0, 0, 0), (255, 255, 0)])
                 curr = v[0] + v[1]
