@@ -14,3 +14,4 @@ chromossomes = [r.id for r in SeqIO.parse(ref, 'fasta')]
 for comp in (Path(__file__).parent / 'diff').glob('*.sam'):
     print(comp)
     data = sam.SamReader(comp)
+
