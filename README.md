@@ -6,7 +6,7 @@ Prerequisites: pypy3, minimap2, muscle
 * Run `./paf_to_vcf.sh` to make a consensus among overlapping regions and create .vcf and a FASTA file for each variation
 * Run `./large_variants.py` to print large variations between each country and the reference genome, and generate images in the images/ directory
 
-Possible phylogenetic tree:
+Big indels to be used to build a phylogenetic tree:
 
 ```
 Chromosome ref|NC_001134|, position in reference 29638, indel of length 5964 removed in relation to reference - ['Africa_do_Sul', 'Alemanha', 'Australia', 'Brasil', 'Colombia', 'EUA', 'Espanha', 'Holanda', 'Inglaterra', 'Irlanda', 'Nomina', 'Republica_Tcheca', 'Senegal']
