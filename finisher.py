@@ -70,7 +70,6 @@ def consensus(sam_path):
             mapped_len += end - max(prev_end, entry[0])
             prev_end = end
     print(f'Mapped length without overlaps: {mapped_len}')
-+
 
 if __name__ == '__main__':
     ensure_sam()

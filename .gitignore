@@ -1,2 +1,3 @@
 venv/
 S288C_reference_genome_R64-3-1_20210421/
+__pycache__
