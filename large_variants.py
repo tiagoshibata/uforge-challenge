@@ -17,6 +17,8 @@ country_genome = {x.name[:-4]: x for x in genome_paths}
 print(f"{len(country_genome)} genomes found: {', '.join(country_genome)}")
 
 if __name__ == '__main__':
+    variations_tree = {}
+    all_large_variations = set()
     for country, genome in country_genome.items():
         print(country)
         large_variations = []
@@ -28,6 +30,9 @@ if __name__ == '__main__':
                 if len(fields[3]) < 5000 and len(fields[4]) < 5000:
                     continue
                 large_variations.append((fields[0], fields[1], len(fields[3]), len(fields[4])))
+        large_variations = set(large_variations)
+        variations_tree[country] = large_variations
+        all_large_variations = all_large_variations.union(large_variations)
         pprint.pprint(large_variations)
 
         variations = defaultdict(list)  # chromosome: id, ref, alt
@@ -59,3 +64,10 @@ if __name__ == '__main__':
                 curr = v[0] + v[1]
             arr = numpy.asarray(image, dtype='uint8', order='C')
             Image.fromarray(arr).save(f'images/{country}_{chromosome}.png')
+    
+
+    def format_var(v):
+        return f"Chromosome {v[0]}, position in reference {v[1]}, indel of length {abs(v[2] - v[3])} {'removed' if v[2] > v[3] else 'added'} in relation to reference"
+
+    for var in all_large_variations:
+        print(f'{format_var(var)} - {sorted(country for country, vars in variations_tree.items() if var in vars)}')
