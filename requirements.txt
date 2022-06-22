@@ -1,6 +1,6 @@
 biopython==1.79
 cffi==1.14.5
 greenlet==0.4.13
-numpy==1.21.2
+numpy==1.22.0
 Pillow==8.4.0
 readline==6.2.4.1
